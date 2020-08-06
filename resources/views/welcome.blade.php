@@ -9,10 +9,16 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        <!--  product env  -->
+        <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
+
+        <!--  debug env  -->
+        <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
+
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                #background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
