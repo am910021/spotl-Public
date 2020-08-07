@@ -20,7 +20,7 @@ class CreateAnnouncesTable extends Migration
             $table->string('title');
             $table->string('content');
 
-            $table->integer('user_id')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }

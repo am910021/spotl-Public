@@ -45,5 +45,11 @@
     "Whoops!": "哎呦！",
     "Enter Index": "進入首頁",
     "Welcome to ": "歡迎來到",
-    "Index": "首頁"
+    "Index": "首頁",
+    "Username": "帳號",
+    "Phone": "手機號碼",
+    "Announce": "公告",
+    "Update Announce": "更新內容",
+    "BlackList": "封處名單"
+
 }

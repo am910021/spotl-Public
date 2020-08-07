@@ -18,11 +18,11 @@ class CreateBlackListsTable extends Migration
             $table->timestamps();
 
             $table->string('player');
-            $table->integer('player_id')->nullable();
+            $table->bigInteger('player_id')->unsigned()->nullable();
             $table->foreign('player_id')->references('id')->on('users')->onDelete('set null');
 
 
-            $table->integer('user_id')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 
         });

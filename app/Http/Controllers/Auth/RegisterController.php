@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\GameUsers;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -50,24 +55,79 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['nullable','string'],
+
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  Request  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $data = $request->all();
+
+        $game = new GameUsers();
+        $game->usr_name = $data['username'];
+        $game->usr_email = $data['email'];
+        $game->usr_pw = Hash::make($data['password']);
+        $game->usr_reg_ip = $request->ip();
+        $game->usr_last_ip  = $request->ip();
+        $game->usr_phone  = $data['phone'];
+        $game->save();
+
+        $user = new User();
+        $user->username = $data['username'];
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->reg_ip = $request->ip();
+        $user->last_ip = $request->ip();
+        $user->register_timestamp = Carbon::now();
+        $user->game_id = $game->usr_id;
+        $user->save();
+
+        return $user;
+    }
+
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request)));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new Response('', 201)
+            : redirect($this->redirectPath());
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $response = array();
+        $response['title'] = __('Register');
+        return view('auth.register2')->with($response);
     }
 }

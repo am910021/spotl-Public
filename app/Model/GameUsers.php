@@ -68,6 +68,7 @@ class GameUsers extends Model
 
     protected $connection = 'game';
     protected $primaryKey = 'usr_id';
+    public $timestamps = false;
 
     protected function webUser()
     {

@@ -23,7 +23,7 @@ class CreateDownloadVersionsTable extends Migration
             $table->boolean('isPatch')->default(false);
             $table->boolean('isOnline')->default(true);
 
-            $table->integer('user_id')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }

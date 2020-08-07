@@ -1,30 +1,17 @@
 @extends('layouts.layout')
-@section('title', 'Page Title')
 
 @section('style')
-    <style>
 
-        .sub-block {
-            background-color: white;
-        }
-
-        .sub-row {
-            padding: 15px;
-        }
-
-        .sub-block > div > div > img {
-            width: 108px;
-            height: 192px;
-        }
-
-        .sub-block > div > div > ul {
-            margin-top: 10px;
-        }
-
-    </style>
 @endsection
 
 @section('content')
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <span class="h1">{{ $title }}</span>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="row">
@@ -56,7 +43,13 @@
                         <div class="col-md-12 sub-block">
                             <div class="row">
                                 <div class="col-md-8 text-center">
-                                    <span class="h3">個人中心</span>
+                                    @guest
+                                        <span class="h3">個人中心</span>
+                                    @else
+                                        <span class="h3">個人中心({{ Auth::user()->username }})</span>
+
+                                    @endguest
+
 
                                     <ul class="list-unstyled">
                                         <li class="list-item">
@@ -108,10 +101,10 @@
 
                                     <ul class="list-unstyled">
                                         <li class="list-item">
-                                            <u>公告1</u>
+                                            <a class="custom-a" href="{{ route('announce') }}"><u>公告1</u></a>
                                         </li>
                                         <li class="list-item">
-                                            <u>公告2</u>
+                                            <a class="custom-a" href="{{ route('announce') }}"><u>公告2</u></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -146,19 +139,6 @@
         </div>
     </div>
 
-    <div class="row sub-row">
-        <div class="col-md-12 sub-block text-center">
-            <div class="row">
-                <div class="col-md-4">
-                    <span>QQ群:xxxxxx</span>
-                </div>
-                <div class="col-md-4">
-                    <span>QQ客服:xxxxxx</span>
-                </div>
-                <div class="col-md-4">
-                    <span>Email:xxxxxx</span>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 @endsection

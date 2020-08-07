@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name') }}-@yield('title')</title>
+    <title>{{ config('app.name') }} - {{ $title }}</title>
 
     <!--  product env  -->
 <!--
@@ -30,9 +30,8 @@
 
     <style>
         .custom-row {
-            padding-top: 50px;
-            padding-left: 50px;
-            padding-right: 50px;
+            padding: 50px;
+
         }
 
         .custom-container {
@@ -82,7 +81,6 @@
         }
 
 
-
         .custom-ul > li > div {
             background-color: rgba(255, 255, 255, 0);
         }
@@ -93,16 +91,28 @@
             margin: 0;
         }
 
+        .sub-block {
+            background-color: white;
+        }
+
+        .sub-row {
+            padding: 15px;
+        }
+
+        .sub-block > div > div > img {
+            width: 108px;
+            height: 192px;
+        }
+
+        .sub-block > div > div > ul {
+            margin-top: 10px;
+        }
     </style>
 
     @yield('style')
 
 </head>
 <body>
-
-@section('sidebar')
-    This is the master sidebar.
-@show
 
 <div id="app">
     <div class="container-fluid ">
@@ -115,7 +125,12 @@
 
                     </div>
                     <div class="col-md-3 text-right">
-                        <a class="h2" href="{{ url("login") }}"><u>登入/註冊</u></a>
+
+                        @guest
+                            <a class="h2" href="{{ route("login") }}"><u>登入/註冊</u></a>
+                        @else
+                            <a class="h2" href="{{ route("logout") }}"><u>登出</u></a>
+                        @endguest
                     </div>
                 </div>
 
@@ -126,16 +141,17 @@
                                 <ul class="navbar-nav custom-ul text-center">
 
                                     <li class="nav-item">
-                                        <a class="nav-link custom-a font-weight-bold" href="{{ url("index") }}">::首頁::</a>
+                                        <a class="nav-link custom-a font-weight-bold"
+                                           href="{{ route("index") }}">::首頁::</a>
                                     </li>
 
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link custom-a font-weight-bold" href="http://example.com"
+                                        <a class="nav-link custom-a font-weight-bold" href="#"
                                            id="navbarDropdownMenuLink" data-toggle="dropdown">::公告::</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="#">更新內容</a>
+                                            <a class="dropdown-item" href="{{ route('update') }}">更新內容</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">封處名單</a>
+                                            <a class="dropdown-item" href="{{ route('blackList') }}">封處名單</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#">排行榜</a>
                                             <div class="dropdown-divider"></div>
@@ -143,7 +159,7 @@
                                     </li>
 
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link custom-a font-weight-bold" href="http://example.com"
+                                        <a class="nav-link custom-a font-weight-bold" href="{{ route('index') }}"
                                            id="navbarDropdownMenuLink" data-toggle="dropdown">::充值::</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <a class="dropdown-item" href="#">Alipay</a>
@@ -156,7 +172,7 @@
                                     </li>
 
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link custom-a font-weight-bold" href="http://example.com"
+                                        <a class="nav-link custom-a font-weight-bold" href="{{ route('index') }}"
                                            id="navbarDropdownMenuLink" data-toggle="dropdown">::活動::</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <a class="dropdown-item" href="#">幸運抽獎</a>
@@ -175,7 +191,7 @@
                                     </li>
 
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link custom-a font-weight-bold" href="http://example.com"
+                                        <a class="nav-link custom-a font-weight-bold" href="{{ route('index') }}"
                                            id="navbarDropdownMenuLink" data-toggle="dropdown">::拓展內容::</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <a class="dropdown-item" href="#">公會</a>
@@ -193,6 +209,22 @@
                 </div>
 
                 @yield('content')
+
+                <div class="row sub-row">
+                    <div class="col-md-12 sub-block text-center">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span>QQ群:xxxxxx</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span>QQ客服:xxxxxx</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span>Email:xxxxxx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
