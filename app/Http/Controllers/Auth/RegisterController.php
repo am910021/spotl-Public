@@ -76,7 +76,7 @@ class RegisterController extends Controller
         $game = new GameUsers();
         $game->usr_name = $data['username'];
         $game->usr_email = $data['email'];
-        $game->usr_pw = Hash::make($data['password']);
+        $game->usr_pw = $data['password'];
         $game->usr_reg_ip = $request->ip();
         $game->usr_last_ip  = $request->ip();
         $game->usr_phone  = $data['phone'];
