@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\GameUsers;
 use App\Providers\RouteServiceProvider;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -65,7 +69,7 @@ class LoginController extends Controller
     /**
      * Log the user out of the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
@@ -83,5 +87,67 @@ class LoginController extends Controller
         return $request->wantsJson()
             ? new Response('', 204)
             : redirect(route('index'));
+    }
+
+    /**
+     * Handle a login request to the application.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+
+        $isLogin = $this->attemptLogin($request);
+        if ($isLogin) {
+            return $this->sendLoginResponse($request);
+        }
+
+        if (!$isLogin) {
+            //Origin game account migrate to web
+            $username = $request->get('username');
+            $password = $request->get('password');
+            $games = GameUsers::where('usr_name', $username)->get();
+            if (count($games) > 0) {
+                $game = $games[0];
+                if ($game->usr_name == $username && $game->usr_pw == $password) {
+                    $user = new User();
+                    $user->username = $username;
+                    $user->email = $game->usr_email;
+                    $user->password = Hash::make($password);
+                    $user->reg_ip = $request->ip();
+                    $user->last_ip = $request->ip();
+                    $user->register_timestamp = Carbon::now();
+                    $user->game_id = $game->usr_id;
+                    $user->save();
+
+                    if ($this->attemptLogin($request)) {
+                        return $this->sendLoginResponse($request);
+                    }
+                }
+            }
+        }
+
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
     }
 }
