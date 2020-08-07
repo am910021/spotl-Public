@@ -50,6 +50,9 @@
     "Phone": "手機號碼",
     "Announce": "公告",
     "Update Announce": "更新內容",
-    "BlackList": "封處名單"
+    "BlackList": "封處名單",
+    "Required": "必填",
+    "Gender": "姓別",
+    "Please choose male or female" : "請選擇一個性別。"
 
 }
