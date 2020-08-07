@@ -52,8 +52,7 @@
 
         .content {
             text-align: center;
-            position: relative;
-            top: 65%;
+            padding-top: 65vh;
         }
 
         .title {
