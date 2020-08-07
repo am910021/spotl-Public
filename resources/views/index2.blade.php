@@ -47,7 +47,8 @@
                                         <span class="h3">個人中心</span>
                                         <ul class="list-unstyled">
                                             <li class="list-item">
-                                                <u>帳號註冊</u>
+                                                <u></u>
+                                                <a class="custom-a" href="{{ route('register') }}"><u>帳號註冊</u></a>
                                             </li>
                                             <li class="list-item">
                                                 <u>權限激活</u>
