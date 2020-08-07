@@ -80,6 +80,7 @@ class RegisterController extends Controller
         $game->usr_reg_ip = $request->ip();
         $game->usr_last_ip  = $request->ip();
         $game->usr_phone  = $data['phone'];
+        $game->usr_register_timestamp = Carbon::now();
         $game->save();
 
         $user = new User();
