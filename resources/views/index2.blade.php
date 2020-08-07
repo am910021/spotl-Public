@@ -45,20 +45,23 @@
                                 <div class="col-md-8 text-center">
                                     @guest
                                         <span class="h3">個人中心</span>
+                                        <ul class="list-unstyled">
+                                            <li class="list-item">
+                                                <u>帳號註冊</u>
+                                            </li>
+                                            <li class="list-item">
+                                                <u>權限激活</u>
+                                            </li>
+                                        </ul>
                                     @else
                                         <span class="h3">個人中心({{ Auth::user()->username }})</span>
-
+                                        <ul class="list-unstyled">
+                                            <li class="list-item">
+                                                <u>權限激活</u>
+                                            </li>
+                                        </ul>
                                     @endguest
 
-
-                                    <ul class="list-unstyled">
-                                        <li class="list-item">
-                                            <u>帳號註冊</u>
-                                        </li>
-                                        <li class="list-item">
-                                            <u>權限激活</u>
-                                        </li>
-                                    </ul>
                                 </div>
                                 <div class="col-md-4">
                                     <img alt="遊戲下載" src="{{ URL::asset('img/l2.png') }}"/>
