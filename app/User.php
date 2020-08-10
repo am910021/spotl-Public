@@ -3,19 +3,20 @@
 namespace App;
 
 use App\Model\GameUsers;
+use App\Model\Logs\RedeemLog;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * @property int id
+ * @property-read int id
  * @property string username
  * @property string email
  * @property Carbon email_verified_at
  * @property string password
  * @property string remember_token
- * @property Carbon created_at
+ * @property-read Carbon created_at
  * @property Carbon updated_at
  * @property Carbon ban_time
  * @property int ban_type
@@ -25,8 +26,9 @@ use Illuminate\Notifications\Notifiable;
  * @property boolean isBanned
  * @property boolean isAdmin
  * @property int game_id
- * @property GameUsers gameUser
+ * @property-read GameUsers gameUser
  * @method static User find(int $int)
+ * @property-read RedeemLog redeemLog
  */
 class User extends Authenticatable
 {
@@ -74,4 +76,8 @@ class User extends Authenticatable
         return $this->belongsTo(GameUsers::class, "game_id");
     }
 
+    protected function redeemLog()
+    {
+        return $this->hasOne(RedeemLog::class, "user_id");
+    }
 }

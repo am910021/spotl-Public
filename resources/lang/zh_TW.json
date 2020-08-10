@@ -53,6 +53,14 @@
     "BlackList": "封處名單",
     "Required": "必填",
     "Gender": "姓別",
-    "Please choose male or female" : "請選擇一個性別。"
-
+    "Please choose male or female" : "請選擇一個性別。",
+    "Recharge/Redeem": "充值/兌換",
+    "Recharge/Redeem (China only)": "充值/兌換(中國地區)",
+    "Buy Cash card": "購買卡密",
+    "Click to buy": "點我購買",
+    "Redeem Cash card": "兌換卡密",
+    "Redeem": "兌換",
+    "Card Number": "卡號",
+    "Redeem Success!": "兌換成功!",
+    "Fail!": "失敗!"
 }

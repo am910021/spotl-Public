@@ -20,6 +20,11 @@ Route::get('/announce', 'IndexController@announce')->name('announce');
 Route::get('/update', 'IndexController@updateNote')->name('update');
 Route::get('/banned', 'IndexController@blackList')->name('blackList');
 
+Route::name('member.')->prefix('/member')->middleware('auth')->group(function () {
+    Route::get('/recharge-redeem', 'Member\RechargeRedeemController@index')->name('rechargeAndRedeem');
+    Route::post('/redeem', 'Member\RechargeRedeemController@redeem')->name('redeem');
+});
+
 //origin auth
 //Auth::routes();
 

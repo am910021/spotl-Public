@@ -12,7 +12,7 @@
 -->
 
     <!--  debug env  -->
-    <link href="assets/css/test.css" rel="stylesheet">
+    <link href="/assets/css/test.css" rel="stylesheet">
 
 
     <!-- CSRF Token -->
@@ -167,6 +167,8 @@
                                             <a class="dropdown-item" href="#">Wechat</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#">Paypal</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{{ route('member.rechargeAndRedeem') }}">{{ __('Recharge/Redeem') }}</a>
                                             <div class="dropdown-divider"></div>
                                         </div>
                                     </li>

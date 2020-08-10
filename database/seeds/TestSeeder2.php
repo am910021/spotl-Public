@@ -13,7 +13,7 @@ class TestSeeder2 extends Seeder
     public function run()
     {
         //
-        $user = User::find(1);
+        $user = User::find(2);
         print($user);
         print("\r\n");
         print($user->gameUser);

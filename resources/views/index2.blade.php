@@ -50,15 +50,12 @@
                                                 <u></u>
                                                 <a class="custom-a" href="{{ route('register') }}"><u>帳號註冊</u></a>
                                             </li>
-                                            <li class="list-item">
-                                                <u>權限激活</u>
-                                            </li>
                                         </ul>
                                     @else
                                         <span class="h3">個人中心({{ Auth::user()->username }})</span>
                                         <ul class="list-unstyled">
                                             <li class="list-item">
-                                                <u>權限激活</u>
+                                                <a class="custom-a" href="{{ route('member.rechargeAndRedeem') }}">{{ __('Recharge/Redeem') }}</a>
                                             </li>
                                         </ul>
                                     @endguest

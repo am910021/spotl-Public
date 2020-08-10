@@ -56,9 +56,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        error_log("aaaaaaaaaaaaa");
-        error_log(json_encode($data));
-
         $database = DB::connection("game")->getDatabaseName();
 
         $rules = [
