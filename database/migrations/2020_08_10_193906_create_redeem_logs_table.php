@@ -16,9 +16,11 @@ class CreateRedeemLogsTable extends Migration
         Schema::create('redeem_logs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('number');
-            $table->string('password');
-            $table->tinyInteger('type')->default(0);
+            $table->string('code');
+            $table->string('pass');
+            $table->string('item_type')->nullable();
+            $table->integer('item_amount')->nullable();
+            $table->integer('price')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });

@@ -74,4 +74,10 @@ class GameUsers extends Model
     {
         return $this->hasOne(User::class, "game_id");
     }
+
+    public static function convert($myClass): GameUsers
+    {
+        return $myClass;
+    }
+
 }

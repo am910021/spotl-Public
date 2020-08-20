@@ -65,13 +65,14 @@
 
                                         <div class="card-body">
 
-                                            @if( $status <= 1)
+
+                                            @if( session('status') == 1)
                                                 <div class="alert alert-primary" role="alert">
-                                                    {{ __('Redeem Success!') }}
+                                                    {{ __('Redeem Success!') . '  ' . session('item') }}
                                                 </div>
-                                            @else
+                                            @elseif ( session('status') == 2)
                                                 <div class="alert alert-danger" role="alert">
-                                                    {{ __('Fail!').'  '.$msg }}
+                                                    {{ __('Fail!') . '  ' . session('msg') }}
                                                 </div>
                                             @endif
 
