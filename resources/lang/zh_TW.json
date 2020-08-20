@@ -72,5 +72,7 @@
     "End Time": "結束時間",
     "Max Redemption": "可兌換次數",
     "Generate Amount": "序號產生數量",
-    "Price(RMB)": "價錢(RMB)"
+    "Price(RMB)": "價錢(RMB)",
+    "Security Code": "安全密碼"
+
 }

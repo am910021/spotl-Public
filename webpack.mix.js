@@ -17,3 +17,4 @@ mix.js('resources/js/app.js', 'public/static/js')
 mix.styles([
     'public/assets/css/test.css',
 ], 'public/static/css/all.css');
+

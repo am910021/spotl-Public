@@ -18,7 +18,7 @@ class CodeController extends Controller
     {
         $response = array();
         $response['title'] = __('Code Manage');
-        $response['item_type'] = array(1 => '火卡', 2 => '水卡', 3 => '風卡', 4 => '土卡', 5 => '四屬卡', 6 => 'Code', 7 => 'Cash',
+        $response['item_type'] = array(0 => '請選擇', 1 => '火卡', 2 => '水卡', 3 => '風卡', 4 => '土卡', 5 => '四屬卡', 6 => 'Code', 7 => 'Cash',
             8 => 'Skill-I卡', 9 => 'Skill-II卡', 1001 => '新手套裝(隨機屬性-30天超銀及全套金卡)',
             1002 => '新手小禮包(8000Cash-5000Card*4-Code10,000,000)',
             1003 => '新手大禮包(15000Cash-10000Card*4-Code30,000,000)');
