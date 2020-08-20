@@ -12,3 +12,5 @@ npm-debug.log
 yarn-error.log
 /.idea
 /public/fonts/
+/public/static/css/app.css
+/public/static/js/app.js
