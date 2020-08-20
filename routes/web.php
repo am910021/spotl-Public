@@ -20,9 +20,22 @@ Route::get('/announce', 'IndexController@announce')->name('announce');
 Route::get('/update', 'IndexController@updateNote')->name('update');
 Route::get('/banned', 'IndexController@blackList')->name('blackList');
 
-Route::name('member.')->prefix('/member')->middleware('auth')->group(function () {
+//Route::name('member.')->prefix('/member')->middleware('member')->group(function () {
+//    Route::get('/recharge-redeem', 'Member\RechargeRedeemController@index')->name('rechargeAndRedeem');
+//});
+
+Route::name('member.')->prefix('/member')->group(function () {
     Route::get('/recharge-redeem', 'Member\RechargeRedeemController@index')->name('rechargeAndRedeem');
+    Route::get('/redeem', 'Member\RechargeRedeemController@index');
     Route::post('/redeem', 'Member\RechargeRedeemController@redeem')->name('redeem');
+});
+
+Route::name('admin.')->prefix('/admin')->group(function () {
+    Route::get('/', 'Admin\AdminController@index')->name('main');
+    Route::get('/code', 'Admin\CodeController@index')->name('code');
+    Route::post('/code/add', 'Admin\CodeController@add')->name('code.add');
+
+
 });
 
 //origin auth

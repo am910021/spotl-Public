@@ -62,5 +62,15 @@
     "Redeem": "兌換",
     "Card Number": "卡號",
     "Redeem Success!": "兌換成功!",
-    "Fail!": "失敗!"
+    "Fail!": "失敗!",
+    "Manage list": "管理列表",
+    "Code Manage": "兌換碼管理",
+    "Admin:": "管理員:",
+    "Item Type": "物品類別",
+    "Item Amount": "物品數量",
+    "Start Time": "開始時間",
+    "End Time": "結束時間",
+    "Max Redemption": "可兌換次數",
+    "Generate Amount": "序號產生數量",
+    "Price(RMB)": "價錢(RMB)"
 }

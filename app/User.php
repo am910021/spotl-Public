@@ -29,14 +29,18 @@ use Illuminate\Notifications\Notifiable;
  * @property-read GameUsers gameUser
  * @method static User find(int $int)
  * @property-read RedeemLog redeemLog
+ * @property string security_code
+ * @property string auth_token
+ * @property int type //127=normal user, 0=web admin
  */
 class User extends Authenticatable
 {
     use Notifiable;
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
-        $this->table = config("database.connections.mysql.database").'.users';
+        $this->table = config("database.connections.mysql.database") . '.users';
     }
 
     /**
@@ -79,5 +83,10 @@ class User extends Authenticatable
     protected function redeemLog()
     {
         return $this->hasOne(RedeemLog::class, "user_id");
+    }
+
+    public static function convert($myClass): User
+    {
+        return $myClass;
     }
 }

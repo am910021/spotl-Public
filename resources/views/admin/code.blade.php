@@ -1,7 +1,14 @@
 @extends('layouts.layout')
 
 @section('style')
+@endsection
 
+@section('script')
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
 @endsection
 
 @section('content')
@@ -27,40 +34,8 @@
                                 <div class="col-md-8 offset-2">
 
                                     <div class="card">
-                                        <div class="card-header h5">{{ __('Buy Cash card') }}</div>
-                                        <div class="card-body">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>.
-                                                Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse
-                                                platea
-                                                dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh,
-                                                lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut
-                                                cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur,
-                                                    nisi
-                                                    id commodo imperdiet, metus nunc consequat lectus, id bibendum diam
-                                                    velit et dui.</em> Proin massa magna, vulputate nec bibendum nec,
-                                                posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu,
-                                                    pharetra
-                                                    quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat
-                                                    eu.</small>
-                                            </p>
-
-                                            <div class="row">
-                                                <div class="col-md-6 offset-3">
-                                                    <button type="button" class="btn btn-block btn-info">
-                                                        {{ __('Click to buy') }}
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 offset-3">&nbsp;</div>
-                                    </div>
-
-                                    <div class="card">
-                                        <div class="card-header h5">{{ __('Redeem Cash card') }}</div>
+                                        <div
+                                            class="card-header h5">{{ __('Admin:') }} {{ auth()->user()->username }}</div>
 
 
                                         <div class="card-body">
@@ -68,16 +43,20 @@
 
                                             @if( session('status') == 1)
 
-                                                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                                                <div class="alert alert-primary alert-dismissible fade show"
+                                                     role="alert">
                                                     <strong>{{ __('Redeem Success!') }}</strong> {{ session('item') }}
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                             @elseif ( session('status') == 2)
-                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <div class="alert alert-danger alert-dismissible fade show"
+                                                     role="alert">
                                                     <strong>{{ __('Fail!') }}</strong> {{ session('item') }}
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -88,13 +67,16 @@
 
                                                 <div class="form-group row">
                                                     <label for="cardNumber"
-                                                           class="col-md-3 col-form-label text-md-right">{{ __('Card Number') }}</label>
+                                                           class="col-md-3 col-form-label text-md-right">{{ __('Item Type') }}</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="cardNumber" type="text"
-                                                               class="form-control @error('cardNumber') is-invalid @enderror"
-                                                               name="cardNumber" value="{{ old('cardNumber') }}"
-                                                               required autocomplete="cardNumber" autofocus>
+{{--                                                        <input id="cardNumber" type="text"--}}
+{{--                                                               class="form-control @error('cardNumber') is-invalid @enderror"--}}
+{{--                                                               name="cardNumber" value="{{ old('cardNumber') }}"--}}
+{{--                                                               required autocomplete="cardNumber" autofocus>--}}
+
+                                                        {!! Form::select('item_type', $item_type, Input::old('item_type'), ['class'=> 'form-control'])  !!}
+
 
                                                         @error('cardNumber')
                                                         <span class="invalid-feedback" role="alert">

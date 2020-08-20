@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Validator;
 class RechargeRedeemController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('member');
+    }
+
     function index()
     {
         $response = array();

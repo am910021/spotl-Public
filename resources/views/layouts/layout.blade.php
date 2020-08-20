@@ -168,7 +168,8 @@
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#">Paypal</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="{{ route('member.rechargeAndRedeem') }}">{{ __('Recharge/Redeem') }}</a>
+                                            <a class="dropdown-item"
+                                               href="{{ route('member.rechargeAndRedeem') }}">{{ __('Recharge/Redeem') }}</a>
                                             <div class="dropdown-divider"></div>
                                         </div>
                                     </li>
@@ -202,6 +203,15 @@
                                         </div>
                                     </li>
 
+                                    @auth
+                                        @if(auth()->user()->isAdmin && auth()->user()->type == 0)
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link custom-a font-weight-bold"
+                                                   href="{{ route("admin.main") }}">::管理員頁面::</a>
+                                            </li>
+                                        @endif
+                                    @endauth
+
                                 </ul>
                             </div>
 
@@ -232,5 +242,7 @@
         </div>
     </div>
 </div>
+
+@yield('script')
 </body>
 </html>

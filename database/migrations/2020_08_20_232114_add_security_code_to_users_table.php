@@ -16,6 +16,7 @@ class AddSecurityCodeToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string("security_code")->nullable();
             $table->string("auth_token")->nullable();
+            $table->tinyInteger('type')->default('127')->comment('127=一般使用者，0=網站管理員'); //127
             //
         });
     }
