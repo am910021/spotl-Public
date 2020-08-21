@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
-@section('style')
+@section('header')
+    @parent
 
 @endsection
 

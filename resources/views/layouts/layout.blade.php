@@ -5,112 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{ config('app.name') }} - {{ $title }}</title>
-
-    <!--  product env  -->
-<!--
-        <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
--->
-
-    <!--  debug env  -->
-    <link href="/assets/css/test.css" rel="stylesheet">
-
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    @section('header')
+        This is the master sidebar.
+        <!--  product env  -->
+        <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}"></script>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <!-- Fonts -->
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <style>
-        .custom-row {
-            padding: 50px;
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        }
-
-        .custom-container {
-            background-color: rgba(240, 248, 255, 0.5);
-            border-color: black;
-            border-width: 4px;
-            border-style: solid;
-        }
-
-        .login-row {
-            margin-top: 15px;
-        }
-
-        .login-row > div > a {
-            color: black;
-            font-weight: bold;
-        }
-
-        .login-row > div > a:hover {
-            color: #1d68a7;
-        }
-
-        .custom-a {
-            color: black;
-        }
-
-        .menu {
-            height: 230px;
-        }
-
-        .custom-ul > li > div > a {
-            font-weight: bold;
-            font-size: medium;
-        }
-
-        .custom-ul {
-            margin: 0 auto;
-        }
-
-        .custom-ul > li {
-            font-size: xx-large;
-        }
-
-        .custom-ul > li > div {
-            padding: 0;
-            border-width: 0;
-        }
-
-
-        .custom-ul > li > div {
-            background-color: rgba(255, 255, 255, 0);
-        }
-
-
-        div.dropdown-divider {
-            border-top: 2px solid black;
-            margin: 0;
-        }
-
-        .sub-block {
-            background-color: white;
-        }
-
-        .sub-row {
-            padding: 15px;
-        }
-
-        .sub-block > div > div > img {
-            width: 108px;
-            height: 192px;
-        }
-
-        .sub-block > div > div > ul {
-            margin-top: 10px;
-        }
-    </style>
-
-    @yield('style')
-
+        <!--  debug env  -->
+        <link href="/assets/css/test.css" rel="stylesheet">
+    @show
 </head>
 <body>
 

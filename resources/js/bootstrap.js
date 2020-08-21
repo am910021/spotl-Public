@@ -11,8 +11,11 @@ try {
     window.$ = window.jQuery = require('jquery');
     require('bootstrap');
 
-    window.moment = require('moment');
-    window.datetimepicker = require('tempusdominus-bootstrap-4');
+
+    //window.moment = require('moment');
+    //window.datetimepicker = require('tempusdominus-bootstrap-4');
+
+
 
 } catch (e) {}
 

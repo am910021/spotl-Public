@@ -1,13 +1,29 @@
 @extends('layouts.layout')
 
-@section('style')
+@section('header')
+    <link href="{{ URL::asset('fontawesome/css/all.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
+
+    <!--  debug env  -->
+    <link href="/assets/css/test.css" rel="stylesheet">
 @endsection
 
 @section('script')
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('fontawesome/js/all.js') }}"></script>
+    <script src="{{ asset('popper/popper.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('moment/moment-with-locales.min.js') }}"></script>
+    <script src="{{ asset('moment/locales.min.js') }}"></script>
+    <script src="{{ asset('tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
     <script type="text/javascript">
+
+        moment.locale('zh-tw');
         $(function () {
             $('#start_time').datetimepicker({
-                locale: 'ru'
+                format: 'L'
 
             });
         });
