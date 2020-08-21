@@ -41,7 +41,7 @@
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" autocomplete="email">
                                     <div class="input-group-append">
-                                        <div class="input-group-text">選填</div>
+                                        <div class="input-group-text">必填</div>
                                     </div>
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                                            class="form-control @error('phone') is-invalid @enderror" name="phone"
                                            value="{{ old('phone') }}" autocomplete="phone">
                                     <div class="input-group-append">
-                                        <div class="input-group-text">選填</div>
+                                        <div class="input-group-text">必填</div>
                                     </div>
                                     @error('phone')
                                     <span class="invalid-feedback" role="alert">

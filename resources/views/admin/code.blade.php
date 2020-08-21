@@ -29,6 +29,7 @@
             $('#start_time').datetimepicker({
                 locale: 'zh-tw',
                 format: 'L',
+                maxDate: dateMax,
             });
             $('#end_time').datetimepicker({
                 locale: 'zh-tw',
@@ -166,7 +167,7 @@
                                                         'data-target'=>'#start_time',
                                                         'data-toggle'=>'datetimepicker',
                                                         'autocomplete'=>'off',
-                                                        'placeholder'=>'查尋時間(開始)'
+                                                        'placeholder'=>'查尋產生時間(開始)'
                                                         ])  }}
 
                                                         <div class="input-group-append"
@@ -187,7 +188,7 @@
                                                         'data-target'=>'#end_time',
                                                         'data-toggle'=>'datetimepicker',
                                                         'autocomplete'=>'off',
-                                                        'placeholder'=>'查尋時間(結束)'
+                                                        'placeholder'=>'查尋產生時間(結束)'
                                                         ])  }}
 
                                                         <div class="input-group-append"
