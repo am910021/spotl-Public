@@ -40,7 +40,7 @@ Route::name('admin.')->prefix('/admin')->group(function () {
 
 
     Route::get('/code/add', 'Admin\CodeController@form')->name('code.add');
-    Route::post('/code/add', 'Admin\CodeController@add')->name('code.add.post');
+    Route::post('/code/add', 'Admin\CodeController@add');
 
 });
 

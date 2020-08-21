@@ -57,6 +57,7 @@ class CodeController extends Controller
             $end_time->addDay();
             $codes = WebCode::where([['generate_timestamp', '<', $end_time->startOfDay()]])->get();
         } elseif ($start_time!="" and $end_time!="") {
+
             $start_time = Carbon::parse($start_time);
             $end_time = Carbon::parse($end_time);
             $end_time->addDay();
@@ -115,7 +116,7 @@ class CodeController extends Controller
         if ($validator->fails()) {
             $response['status'] = 2;
             $response['item'] = '';
-            return redirect(route('admin.code') . '#card-main')->with($response)
+            return redirect(route('admin.code.add') . '#card-main')->with($response)
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -148,7 +149,7 @@ class CodeController extends Controller
             $response['item'] = '';
             $i++;
         }
-        return redirect(route('admin.code') . '#card-main')->with($response)->withInput();
+        return redirect(route('admin.code.add') . '#card-main')->with($response)->withInput();
     }
 
 

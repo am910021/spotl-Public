@@ -2,8 +2,8 @@
 
 @section('header')
     <link href="{{ URL::asset('test/tempusdominus.css') }}" rel="stylesheet">
-    <!--  debug env  -->
-    <link href="/assets/css/test.css" rel="stylesheet">
+    <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('script')
@@ -92,7 +92,7 @@
                                                 </div>
                                             @endif
 
-                                            <form method="POST" action="{{ route('admin.code.add.post') }}" id="redeem">
+                                            <form method="POST" action="{{ route('admin.code.add') }}" id="redeem">
                                                 @csrf
 
                                                 <div class="form-group row">

@@ -2,8 +2,7 @@
 
 @section('header')
     <link href="{{ URL::asset('test/tempusdominus.css') }}" rel="stylesheet">
-    <!--  debug env  -->
-    <link href="/assets/css/test.css" rel="stylesheet">
+    <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('handsontable/handsontable.full.min.css') }}" rel="stylesheet">
 @endsection
 
@@ -14,18 +13,36 @@
 
     <script>
         var now = "{!! \Carbon\Carbon::now()->isoFormat('YYYY/MM/DD HH:mm') !!}"
+        var end_time = '';
+        var start_time = '';
 
-        $(function () {
+        @if(old('start_time'))
+            start_time = "{!! old('start_time') !!}";
+        @endif
+
+            @if(old('end_time'))
+            end_time = "{!! old('end_time') !!}";
+        @endif
+
+
+        $(document).ready(function(){
             $('#start_time').datetimepicker({
                 locale: 'zh-tw',
                 format: 'L',
             });
-        });
-
-        $(function () {
             $('#end_time').datetimepicker({
                 locale: 'zh-tw',
                 format: 'L',
+            });
+
+            $('#start_time').val(start_time);
+            $('#end_time').val(end_time);
+
+            $('#reset').click(function () {
+                end_time = '';
+                start_time = '';
+                $('#start_time').attr('value','');
+                $('#end_time').attr('value','');
             });
         });
 
@@ -183,8 +200,15 @@
 
                                                     <div class="clo-md-2">
                                                         <button type="submit"
-                                                           class="btn btn-block btn-info">
+                                                                class="btn btn-block btn-info">
                                                             {{ __('Query') }}
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="clo-md-2 offset-1">
+                                                        <button type="reset" id="reset"
+                                                                class="btn btn-block btn-info">
+                                                            {{ __('Reset') }}
                                                         </button>
                                                     </div>
                                                 </div>
