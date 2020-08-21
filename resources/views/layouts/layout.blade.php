@@ -65,10 +65,6 @@
                                         <a class="nav-link custom-a font-weight-bold" href="{{ route('index') }}"
                                            id="navbarDropdownMenuLink" data-toggle="dropdown">::充值::</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Alipay</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Wechat</a>
-                                            <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#">Paypal</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item"
@@ -129,13 +125,17 @@
                     <div class="col-md-12 sub-block text-center">
                         <div class="row">
                             <div class="col-md-4">
-                                <span>QQ群:xxxxxx</span>
+                                <span>QQ群：927940615</span><br>
+                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModalCenter">
+                                    顯示二維碼
+                                </button>
                             </div>
                             <div class="col-md-4">
-                                <span>QQ客服:xxxxxx</span>
+                                <span>QQ群负责人1：56769274</span><br>
+                                <span>QQ群负责人2：554821034</span>
                             </div>
                             <div class="col-md-4">
-                                <span>Email:xxxxxx</span>
+                                <span>E-mail：124620278@qq.com</span>
                             </div>
                         </div>
                     </div>
@@ -146,6 +146,24 @@
     </div>
 </div>
 
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">QQ群二維碼</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{{ URL::asset('img/qrcode.png') }}" alt="QQ群二維碼">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section('script')
     <script src="{{ asset('js/app.js') }}"></script>
 @show

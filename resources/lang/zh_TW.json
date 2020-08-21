@@ -57,7 +57,6 @@
     "Recharge/Redeem": "充值/兌換",
     "Recharge/Redeem (China only)": "充值/兌換(中國地區)",
     "Buy Cash card": "購買卡密",
-    "Click to buy": "點我購買",
     "Redeem Cash card": "兌換卡密",
     "Redeem": "兌換",
     "Card Number": "卡號",
@@ -80,6 +79,7 @@
     "Generate Fail!": "產生失敗!",
     "Generate": "產生",
     "Download": "下載",
-    "Query": "查尋"
-
+    "Query": "查尋",
+    "Click to Recharge": "點我充值Cash",
+    "Click to Buy": "點我購買新手禮包"
 }

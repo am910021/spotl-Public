@@ -26,26 +26,21 @@
                                         <div class="card-header h5">{{ __('Buy Cash card') }}</div>
                                         <div class="card-body">
                                             <p>
-                                                Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>.
-                                                Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse
-                                                platea
-                                                dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh,
-                                                lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut
-                                                cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur,
-                                                    nisi
-                                                    id commodo imperdiet, metus nunc consequat lectus, id bibendum diam
-                                                    velit et dui.</em> Proin massa magna, vulputate nec bibendum nec,
-                                                posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu,
-                                                    pharetra
-                                                    quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat
-                                                    eu.</small>
+                                                新手礼包链接（不同礼包每个账号终身只能兑换1次，购买前请确认之前是否已经购买兑换过，如玩家已购买过同类型礼包导致再购买无法使用，本服概不退还）
                                             </p>
 
                                             <div class="row">
-                                                <div class="col-md-6 offset-3">
-                                                    <button type="button" class="btn btn-block btn-info">
-                                                        {{ __('Click to buy') }}
-                                                    </button>
+                                                <div class="col-md-4 offset-2">
+                                                    <a href="https://ip_address_removed/s/AtPz3ng" target="_blank" type="button"
+                                                       class="btn btn-block btn-info">
+                                                        {{ __('Click to Recharge') }}
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <a href="https://ip_address_removed/s/AJ8aVZO" target="_blank" type="button" class="btn btn-block btn-info">
+                                                        {{ __('Click to Buy') }}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,16 +59,20 @@
 
                                             @if( session('status') == 1)
 
-                                                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                                                <div class="alert alert-primary alert-dismissible fade show"
+                                                     role="alert">
                                                     <strong>{{ __('Redeem Success!') }}</strong> {{ session('item') }}
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                             @elseif ( session('status') == 2)
-                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <div class="alert alert-danger alert-dismissible fade show"
+                                                     role="alert">
                                                     <strong>{{ __('Fail!') }}</strong> {{ session('item') }}
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>

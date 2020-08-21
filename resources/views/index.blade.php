@@ -69,17 +69,24 @@
                     <div class="row sub-row">
                         <div class="col-md-12 sub-block">
                             <p>
-                                Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>.
-                                Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea
-                                dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh,
-                                lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut
-                                cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi
-                                    id commodo imperdiet, metus nunc consequat lectus, id bibendum diam
-                                    velit et dui.</em> Proin massa magna, vulputate nec bibendum nec,
-                                posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra
-                                    quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat
-                                    eu.</small>
+                                欢迎来到SpOTL彩虹冒险私服游玩，本服务器是基于韩国IO公司官方彩虹冒险最后版本开发出的版本，本版本尚未开发完全，具有以下游玩特色:
                             </p>
+                            <ol>
+                                <li class="list-item">
+                                    多人任务白卡经验最高3倍，任务5通关后房间所有玩家（不论死活）获得额外击杀火龙所获卡的40%~60%
+                                </li>
+                                <li class="list-item">
+                                    玩家"月光宝盒"(物品栏)96格全开
+                                </li>
+                                <li class="list-item">
+                                    "弓"武器可合成出"减少攻击时间" 以及兼容出现"不可使用特殊技能"
+                                </li>
+                                <li class="list-item">
+                                    绝大部分主流界面汉化
+                                </li>
+
+                            </ol>
+                                更多内容添加下方QQ群了解
                         </div>
                     </div>
                 </div>
