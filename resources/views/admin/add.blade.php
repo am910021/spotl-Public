@@ -92,7 +92,7 @@
                                                 </div>
                                             @endif
 
-                                            <form method="POST" action="{{ route('admin.code.add') }}" id="redeem">
+                                            <form method="POST" action="{{ route('admin.code.add.post') }}" id="redeem">
                                                 @csrf
 
                                                 <div class="form-group row">
