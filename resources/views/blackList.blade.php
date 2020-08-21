@@ -1,10 +1,5 @@
 @extends('layouts.layout')
 
-@section('header')
-    @parent
-
-@endsection
-
 @section('content')
 
     <div class="row">

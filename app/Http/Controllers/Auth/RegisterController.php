@@ -141,6 +141,6 @@ class RegisterController extends Controller
     {
         $response = array();
         $response['title'] = __('Register');
-        return view('auth.register2')->with($response);
+        return view('auth.register')->with($response);
     }
 }

@@ -10,13 +10,13 @@ class IndexController extends Controller
     function index(){
         $response = array();
         $response['title'] = __('Index');
-        return view("index2")->with($response);
+        return view("index")->with($response);
     }
 
 
     function welcome(){
         $response = array();
-        return view("welcome2")->with($response);
+        return view("welcome")->with($response);
     }
 
     function announce(){

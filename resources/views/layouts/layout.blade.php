@@ -9,22 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @section('header')
-        This is the master sidebar.
-        <!--  product env  -->
-        <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}"></script>
-
-        <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-        <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-        <!--  debug env  -->
-        <link href="/assets/css/test.css" rel="stylesheet">
+        <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
     @show
 </head>
 <body>
@@ -158,6 +146,8 @@
     </div>
 </div>
 
-@yield('script')
+@section('script')
+    <script src="{{ asset('js/app.js') }}"></script>
+@show
 </body>
 </html>

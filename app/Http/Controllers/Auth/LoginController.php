@@ -53,7 +53,7 @@ class LoginController extends Controller
     {
         $response = array();
         $response['title'] = __('Login');
-        return view('auth.login2')->with($response);
+        return view('auth.login')->with($response);
     }
 
     /**
