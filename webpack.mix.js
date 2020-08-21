@@ -22,6 +22,12 @@ mix.styles([
 mix.js('resources/js/tempusdominus.js', 'public/static/test/');
 mix.sass('resources/sass/tempusdominus.scss', 'public/static/test/');
 
+mix.js('resources/js/main.js', 'public/static/main/');
+mix.sass('resources/sass/main.scss', 'public/static/main/');
+
+mix.copyDirectory('node_modules/handsontable/dist/*', 'public/static/handsontable/');
+mix.copyDirectory('node_modules/handsontable/dist/languages', 'public/static/handsontable/languages');
+
 
 // module.exports = {
 //     plugins: [

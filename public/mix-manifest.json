@@ -2,6 +2,17 @@
     "/static/js/app.js": "/static/js/app.js",
     "/static/css/app.css": "/static/css/app.css",
     "/static/test/tempusdominus.css": "/static/test/tempusdominus.css",
+    "/static/main/main.css": "/static/main/main.css",
+    "/static/main/main.js": "/static/main/main.js",
     "/static/test/tempusdominus.js": "/static/test/tempusdominus.js",
-    "/static/css/all.css": "/static/css/all.css"
+    "/static/css/all.css": "/static/css/all.css",
+    "/static/handsontable/handsontable.css": "/static/handsontable/handsontable.css",
+    "/static/handsontable/handsontable.full.css": "/static/handsontable/handsontable.full.css",
+    "/static/handsontable/handsontable.full.js": "/static/handsontable/handsontable.full.js",
+    "/static/handsontable/handsontable.full.min.css": "/static/handsontable/handsontable.full.min.css",
+    "/static/handsontable/handsontable.full.min.js": "/static/handsontable/handsontable.full.min.js",
+    "/static/handsontable/handsontable.js": "/static/handsontable/handsontable.js",
+    "/static/handsontable/handsontable.min.css": "/static/handsontable/handsontable.min.css",
+    "/static/handsontable/handsontable.min.js": "/static/handsontable/handsontable.min.js",
+    "/static/handsontable/README.md": "/static/handsontable/README.md"
 }

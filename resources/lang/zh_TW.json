@@ -65,6 +65,7 @@
     "Fail!": "失敗!",
     "Manage list": "管理列表",
     "Code Manage": "兌換碼管理",
+    "Code Generate": "產生兌換碼",
     "Admin:": "管理員:",
     "Item Type": "物品類別",
     "Item Amount": "物品數量",
@@ -77,5 +78,8 @@
     "Permission denied.": "權限不足。",
     "Generate Success!": "產生成功!",
     "Generate Fail!": "產生失敗!",
-    "Generate": "產生"
+    "Generate": "產生",
+    "Download": "下載",
+    "Query": "查尋"
+
 }

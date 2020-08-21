@@ -33,8 +33,14 @@ Route::name('member.')->prefix('/member')->group(function () {
 Route::name('admin.')->prefix('/admin')->group(function () {
     Route::get('/', 'Admin\AdminController@index')->name('main');
     Route::get('/code', 'Admin\CodeController@index')->name('code');
-    Route::post('/code/add', 'Admin\CodeController@add')->name('code.add');
-    Route::get('/code/add', 'Admin\CodeController@index');
+    Route::post('/code/query/', 'Admin\CodeController@query')->name('code.query');
+    Route::get('/code/query/', function () {
+        return redirect(route('admin.code'));
+    });
+
+
+    Route::get('/code/add', 'Admin\CodeController@form')->name('code.add');
+    Route::post('/code/add', 'Admin\CodeController@add');
 
 });
 

@@ -8,6 +8,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -21,17 +22,70 @@ class CodeController extends Controller
         $this->middleware('admin');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $response = array();
         $response['title'] = __('Code Manage');
+        $response['data'] = array();
+        $codes = array();
+        $codes = WebCode::all();
+        foreach ($codes as $code) {
+            $temp = array('code' => $code->code, 'pass' => $code->pass, 'item_type' => $code->item_type, 'item_amount' => $code->item_amount,
+                'item_amount' => $code->item_amount, 'generate_username' => $code->generate_username, 'generate_timestamp' => $code->generate_timestamp,
+                'effective_start' => $code->effective_start, 'effective_end' => $code->effective_end, 'max_redemption' => $code->max_redemption,
+                'remaining_redemption' => $code->remaining_redemption, 'price' => $code->price);
+            array_push($response['data'], $temp);
+        }
+
+        return view('admin.code')->with($response);
+    }
+
+    public function query(Request $request)
+    {
+        $response = array();
+        $response['title'] = __('Code Manage');
+        $response['data'] = array();
+        $codes = array();
+
+        $start_time = $request->get('start_time');
+        $end_time = $request->get('end_time');
+        if ($start_time!="" and $end_time=="") {
+            $start_time = Carbon::parse($start_time);
+            $codes = WebCode::where([['generate_timestamp', '>=', $start_time->startOfDay()]])->get();
+        } elseif ($start_time=="" and $end_time!="") {
+            $end_time = Carbon::parse($end_time);
+            $end_time->addDay();
+            $codes = WebCode::where([['generate_timestamp', '<', $end_time->startOfDay()]])->get();
+        } elseif ($start_time!="" and $end_time!="") {
+            $start_time = Carbon::parse($start_time);
+            $end_time = Carbon::parse($end_time);
+            $end_time->addDay();
+            $codes = WebCode::where([['generate_timestamp', '>=', $start_time->startOfDay()], ['generate_timestamp', '<', $end_time->startOfDay()]])->get();
+        } else {
+            $codes = WebCode::all();
+        }
+        foreach ($codes as $code) {
+            $temp = array('code' => $code->code, 'pass' => $code->pass, 'item_type' => $code->item_type, 'item_amount' => $code->item_amount,
+                'item_amount' => $code->item_amount, 'generate_username' => $code->generate_username, 'generate_timestamp' => $code->generate_timestamp,
+                'effective_start' => $code->effective_start, 'effective_end' => $code->effective_end, 'max_redemption' => $code->max_redemption,
+                'remaining_redemption' => $code->remaining_redemption, 'price' => $code->price);
+            array_push($response['data'], $temp);
+        }
+
+        return redirect(route('admin.code'))->with($response)->withInput();
+    }
+
+    public function form()
+    {
+        $response = array();
+        $response['title'] = __('Code Generate');
         $response['item_type'] = array(0 => '請選擇', 1 => '火卡', 2 => '水卡', 3 => '風卡', 4 => '土卡', 5 => '四屬卡', 6 => 'Code', 7 => 'Cash',
             8 => 'Skill-I卡', 9 => 'Skill-II卡', 1001 => '新手套裝(隨機屬性-30天超銀及全套金卡)',
             1002 => '新手小禮包(8000Cash-5000Card*4-Code10,000,000)',
             1003 => '新手大禮包(15000Cash-10000Card*4-Code30,000,000)');
 
 
-        return view('admin.code')->with($response);
+        return view('admin.add')->with($response);
     }
 
     public function add(Request $request)
@@ -65,7 +119,6 @@ class CodeController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
 
 
         $i = 0;
