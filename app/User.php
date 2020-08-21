@@ -28,7 +28,7 @@ use Illuminate\Notifications\Notifiable;
  * @property int game_id
  * @property-read GameUsers gameUser
  * @method static User find(int $int)
- * @property-read RedeemLog redeemLog
+ * @property-read RedeemLog[] redeemLogs
  * @property string security_code
  * @property string auth_token
  * @property int type //127=normal user, 0=web admin
@@ -80,9 +80,9 @@ class User extends Authenticatable
         return $this->belongsTo(GameUsers::class, "game_id");
     }
 
-    protected function redeemLog()
+    protected function redeemLogs()
     {
-        return $this->hasOne(RedeemLog::class, "user_id");
+        return $this->hasMany(RedeemLog::class, "user_id");
     }
 
     public static function convert($myClass): User

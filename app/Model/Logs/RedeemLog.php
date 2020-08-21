@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string code
  * @property string pass
  * @property string item_type
- * @property string item_amount
+ * @property int item_amount
  * @property int price
  * @property-read Carbon created_at
  * @property Carbon updated_at

@@ -34,7 +34,7 @@ Route::name('admin.')->prefix('/admin')->group(function () {
     Route::get('/', 'Admin\AdminController@index')->name('main');
     Route::get('/code', 'Admin\CodeController@index')->name('code');
     Route::post('/code/add', 'Admin\CodeController@add')->name('code.add');
-
+    Route::get('/code/add', 'Admin\CodeController@index');
 
 });
 

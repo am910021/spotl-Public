@@ -116,6 +116,8 @@ return [
     'uploaded'    => ':attribute 上傳失敗。',
     'url'         => ':attribute 的格式錯誤。',
     'uuid'        => ':attribute 必須是有效的 UUID。',
+    'security'        => ':attribute 驗證失敗。',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -175,6 +177,14 @@ return [
         'title'                 => '標題',
         'username'              => '使用者名稱',
         'year'                  => '年',
-        'cardNumber'            => '卡號'
+        'cardNumber'            => '卡號',
+        'security_code'         =>'安全密碼',
+        'item_type'             =>'物品類別',
+        'item_amount'           =>'物品數量',
+        'start_time'            =>'開始時間',
+        'end_time'              =>'結束時間',
+        'max_redemption'        =>'可兌換次數',
+        'amount'                =>'序號產生數量',
+        'price'                 =>'價錢(RMB)',
     ],
 ];

@@ -1,36 +1,42 @@
 @extends('layouts.layout')
 
 @section('header')
-    <link href="{{ URL::asset('fontawesome/css/all.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
-
+    <link href="{{ URL::asset('test/tempusdominus.css') }}" rel="stylesheet">
     <!--  debug env  -->
     <link href="/assets/css/test.css" rel="stylesheet">
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('fontawesome/js/all.js') }}"></script>
-    <script src="{{ asset('popper/popper.js') }}"></script>
-    <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('moment/moment-with-locales.min.js') }}"></script>
-    <script src="{{ asset('moment/locales.min.js') }}"></script>
-    <script src="{{ asset('tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ asset('test/tempusdominus.js') }}"></script>
 
     <script type="text/javascript">
 
-        moment.locale('zh-tw');
+        var now = "{!! \Carbon\Carbon::now()->isoFormat('YYYY/MM/DD HH:mm') !!}"
+
         $(function () {
             $('#start_time').datetimepicker({
-                format: 'L'
-
+                locale: 'zh-tw',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
             });
+            $('#start_time').val(now);
         });
+
         $(function () {
             $('#end_time').datetimepicker({
-                locale: 'zh-tw'
+                locale: 'zh-tw',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
             });
+            $('#end_time').val(now);
         });
     </script>
 @endsection
@@ -69,7 +75,7 @@
 
                                                 <div class="alert alert-primary alert-dismissible fade show"
                                                      role="alert">
-                                                    <strong>{{ __('Redeem Success!') }}</strong> {{ session('item') }}
+                                                    <strong>{{ __('Generate Success!') }}</strong> {{ session('item') }}
                                                     <button type="button" class="close" data-dismiss="alert"
                                                             aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -78,7 +84,7 @@
                                             @elseif ( session('status') == 2)
                                                 <div class="alert alert-danger alert-dismissible fade show"
                                                      role="alert">
-                                                    <strong>{{ __('Fail!') }}</strong> {{ session('item') }}
+                                                    <strong>{{ __('Generate Fail!') }}</strong> {{ session('item') }}
                                                     <button type="button" class="close" data-dismiss="alert"
                                                             aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -86,7 +92,7 @@
                                                 </div>
                                             @endif
 
-                                            <form method="POST" action="{{ route('member.redeem') }}" id="redeem">
+                                            <form method="POST" action="{{ route('admin.code.add') }}" id="redeem">
                                                 @csrf
 
                                                 <div class="form-group row">
@@ -140,12 +146,13 @@
                                                     <div class="col-md-8">
                                                         {{ Form::number(
                                                         'item_amount',
-                                                        '',
+                                                        1,
                                                         ['id'=>'item-amount',
                                                         'class'=> 'form-control'. ($errors->has('item_amount') ? ' is-invalid' : null),
                                                         'required' => '',
                                                         'autocomplete'=>'item_amount',
-                                                        'autofocus'=>''
+                                                        'autofocus'=>'',
+                                                        'min'=>'1'
                                                         ])  }}
 
                                                         @error('item_amount')
@@ -165,7 +172,7 @@
 
                                                         {{ Form::text(
                                                         'start_time',
-                                                        \Carbon\Carbon::now(),
+                                                         null,
                                                         ['id'=>'start_time',
                                                         'class'=> 'form-control datetimepicker-input'. ($errors->has('start_time') ? ' is-invalid' : null),
                                                         'required' => '',
@@ -200,7 +207,7 @@
 
                                                         {{ Form::text(
                                                         'end_time',
-                                                        \Carbon\Carbon::now(),
+                                                        null,
                                                         ['id'=>'end_time',
                                                         'class'=> 'form-control datetimepicker-input'. ($errors->has('end_time') ? ' is-invalid' : null),
                                                         'required' => '',
@@ -233,12 +240,14 @@
                                                     <div class="col-md-8">
                                                         {{ Form::number(
                                                         'max_redemption',
-                                                        '',
+                                                        1,
                                                         ['id'=>'max-redemption',
                                                         'class'=> 'form-control'. ($errors->has('max_redemption') ? ' is-invalid' : null),
                                                         'required' => '',
                                                         'autocomplete'=>'max_redemption',
-                                                        'autofocus'=>''])  }}
+                                                        'autofocus'=>'',
+                                                        'min'=>'1'
+                                                        ])  }}
 
                                                         @error('max_redemption')
                                                         <span class="invalid-feedback" role="alert">
@@ -282,7 +291,9 @@
                                                         'class'=> 'form-control'. ($errors->has('price') ? ' is-invalid' : null),
                                                         'required' => '',
                                                         'autocomplete'=>'price',
-                                                        'autofocus'=>''])  }}
+                                                        'autofocus'=>'',
+                                                         'min'=>'0'
+                                                        ])  }}
 
                                                         @error('price')
                                                         <span class="invalid-feedback" role="alert">
@@ -295,9 +306,9 @@
 
 
                                                 <div class="form-group row mb-0">
-                                                    <div class="col-md-6 offset-3">
+                                                    <div class="col-md-8 offset-3">
                                                         <button type="submit" class="btn btn-block btn-success">
-                                                            {{ __('Redeem') }}
+                                                            {{ __('Generate') }}
                                                         </button>
                                                     </div>
                                                 </div>

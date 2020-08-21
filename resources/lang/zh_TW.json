@@ -73,6 +73,9 @@
     "Max Redemption": "可兌換次數",
     "Generate Amount": "序號產生數量",
     "Price(RMB)": "價錢(RMB)",
-    "Security Code": "安全密碼"
-
+    "Security Code": "安全密碼",
+    "Permission denied.": "權限不足。",
+    "Generate Success!": "產生成功!",
+    "Generate Fail!": "產生失敗!",
+    "Generate": "產生"
 }

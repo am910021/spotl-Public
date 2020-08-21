@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
  * @property string pass
  * @property int item_type
  * @property int item_amount
- * @property string generate_user
+ * @property string generate_username
  * @property Carbon generate_timestamp
  * @property Carbon effective_start
  * @property Carbon effective_end

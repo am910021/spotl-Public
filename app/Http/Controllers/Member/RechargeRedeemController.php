@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Model\Game\GameItem;
+use App\Model\Game\ManualTransaction;
+use App\Model\Game\Transaction;
 use App\Model\Game\WebCode;
 use App\Model\GameUsers;
 use App\Model\Logs\RedeemLog;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -230,6 +233,7 @@ class RechargeRedeemController extends Controller
                 $gameUser->save();
                 //require_once '../../FunG_Function.php';
                 //GetDonationSum($_SESSION['usr_name']);
+                $this->getDonationSum();
                 break;
 
             case 8:
@@ -281,6 +285,7 @@ class RechargeRedeemController extends Controller
                 $ret['item'] = "The Beginner Pack (30-day Super Silver Card & a set of 30-day Gold Equipment Cards of random element included)";
                 //require_once '../../FunG_Function.php';
                 //GetDonationSum($_SESSION['usr_name']);
+                $this->getDonationSum();
                 break;
 
             case 1002;
@@ -294,6 +299,7 @@ class RechargeRedeemController extends Controller
                 $ret['item'] = "The Beginner Pack (Cash 8000 & Card 5000*4 & Code 10,000,000)";
                 //require_once '../../FunG_Function.php';
                 //GetDonationSum($_SESSION['usr_name']);
+                $this->getDonationSum();
                 break;
 
             case 1003;
@@ -307,9 +313,48 @@ class RechargeRedeemController extends Controller
                 $ret['item'] = "The Beginner Pack (Cash 15000 & Card 10000*4 & Code 30,000,000)";
                 //require_once '../../FunG_Function.php';
                 //GetDonationSum($_SESSION['usr_name']);
+                $this->getDonationSum();
                 break;
         }
 
+    }
+
+    private function getDonationSum()
+    {
+        $user = User::convert(Auth::user());
+        $gameUser = $user->gameUser;
+
+        if ($gameUser->usr_trade == 0) {
+            $unlock_trade_cash = 20000;
+            $SumCash = 0;
+            $manuals = ManualTransaction::where('IGname', $user->username)->get();
+            foreach ($manuals as $manual) {
+
+                $SumCash += intval($manual->cash_amount);
+            }
+
+            $logs = $user->redeemLogs;
+
+            foreach ($logs as $log) {
+                if ($log->item_type == 1001) {
+                    $SumCash += 3000;
+                } else if ($log->item_type == 1002) {
+                    $SumCash += 7000;
+                } else if ($log->item_type == 7) {
+                    $SumCash += $log->item_amount;
+                }
+            }
+
+            $trans = Transaction::where('user_id', $gameUser->usr_id)->get();
+            foreach ($trans as $tran) {
+                $SumCash += intval($tran->cash);
+            }
+
+            if ($SumCash >= $unlock_trade_cash) {
+                $gameUser->usr_trade = 1;
+                $gameUser->save();
+            }
+        }
     }
 
 }
