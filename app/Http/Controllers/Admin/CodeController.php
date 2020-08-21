@@ -51,20 +51,33 @@ class CodeController extends Controller
         $end_time = $request->get('end_time');
         if ($start_time!="" and $end_time=="") {
             $start_time = Carbon::parse($start_time);
+            $start_time->addDays(1);
             $codes = WebCode::where([['generate_timestamp', '>=', $start_time->startOfDay()]])->get();
+            error_log($start_time);
+            error_log(WebCode::where([['generate_timestamp', '>=', $start_time->startOfDay()]])->toSql());
+            error_log(json_encode(WebCode::where([['generate_timestamp', '>=', $start_time->startOfDay()]])->getBindings()));
+
         } elseif ($start_time=="" and $end_time!="") {
             $end_time = Carbon::parse($end_time);
-            $end_time->addDay();
+            $end_time->addDays(2);
             $codes = WebCode::where([['generate_timestamp', '<', $end_time->startOfDay()]])->get();
+
+            error_log($end_time);
+            error_log(WebCode::where([['generate_timestamp', '>=', $end_time->startOfDay()]])->toSql());
+            error_log(json_encode(WebCode::where([['generate_timestamp', '>=', $end_time->startOfDay()]])->getBindings()));
         } elseif ($start_time!="" and $end_time!="") {
 
             $start_time = Carbon::parse($start_time);
             $end_time = Carbon::parse($end_time);
-            $end_time->addDay();
+            $start_time->addDays(1);
+            $end_time->addDays(2);
             $codes = WebCode::where([['generate_timestamp', '>=', $start_time->startOfDay()], ['generate_timestamp', '<', $end_time->startOfDay()]])->get();
         } else {
             $codes = WebCode::all();
         }
+
+        error_log(count($codes));
+
         foreach ($codes as $code) {
             $temp = array('code' => $code->code, 'pass' => $code->pass, 'item_type' => $code->item_type, 'item_amount' => $code->item_amount,
                 'item_amount' => $code->item_amount, 'generate_username' => $code->generate_username, 'generate_timestamp' => $code->generate_timestamp,
@@ -73,7 +86,7 @@ class CodeController extends Controller
             array_push($response['data'], $temp);
         }
 
-        return redirect(route('admin.code'))->with($response)->withInput();
+        return view('admin.code')->with($response);
     }
 
     public function form()

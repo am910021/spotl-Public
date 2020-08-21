@@ -152,7 +152,7 @@ class RechargeRedeemController extends Controller
             }
         } else {
             foreach ($items as $item) {
-                array_push($used_slot, $item);
+                array_push($used_slot, $item->itm_slot);
             }
             for ($i = 0; $i < 96; $i++) {
                 if (!in_array($i, $used_slot)) {

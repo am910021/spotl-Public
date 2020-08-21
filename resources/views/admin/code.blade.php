@@ -28,12 +28,13 @@
         $(document).ready(function(){
             $('#start_time').datetimepicker({
                 locale: 'zh-tw',
-                format: 'L',
-                maxDate: dateMax,
+                format: 'YYYY/MM/DD',
+                maxDate: moment(new Date),
             });
             $('#end_time').datetimepicker({
                 locale: 'zh-tw',
-                format: 'L',
+                format: 'YYYY/MM/DD',
+                maxDate: moment(new Date),
             });
 
             $('#start_time').val(start_time);
