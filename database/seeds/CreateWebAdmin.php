@@ -14,7 +14,7 @@ class CreateWebAdmin extends Seeder
     public function run()
     {
         //
-        $username = $this->command->ask('請輸入管理員帳號');
+        $username = $this->command->ask('Enter admin name');
         $password = '';
         $cPassword = '';
 
@@ -26,19 +26,19 @@ class CreateWebAdmin extends Seeder
         $i = 0;
         while (true) {
             $i++;
-            $password = $this->command->ask('請輸入密碼(英文+數字)');
+            $password = $this->command->ask('Enter password(char+number)');
             if(!preg_match($pattern, $password)){
-                print('請輸入更安全的密碼。' . PHP_EOL);
+                print('Please re-enter, the password is not secure enough.' . PHP_EOL);
                 $i--;
                 continue;
             }
-            $cPassword = $this->command->ask('請確認密碼');
+            $cPassword = $this->command->ask('Check password');
             if ($password != $cPassword) {
                 if ($i >= 3) {
-                    print('取消創建網頁管理員，確認密碼錯誤過多次。' . PHP_EOL);
+                    print('Cancel the creation of a web administrator and confirm that the password has been incorrect for many times.' . PHP_EOL);
                     return;
                 } else {
-                    print('密碼不相符，請重新輸入。' . PHP_EOL);
+                    print('The passwords do not match, please re-enter.' . PHP_EOL);
                 }
             }else{
                 break;
@@ -48,20 +48,20 @@ class CreateWebAdmin extends Seeder
         $i = 0;
         while (true) {
             $i++;
-            $scode = $this->command->ask('請輸入安全密碼(至少8位)');
+            $scode = $this->command->ask('Please enter a security password (at least 8 char)');
             if($scode == '' || strlen($scode) < 8){
-                print('請輸入8位安全密碼。' . PHP_EOL);
+                print('Please enter an 8-char security code.' . PHP_EOL);
                 $i--;
                 continue;
             }
 
-            $cscode = $this->command->ask('確認安全密碼');
+            $cscode = $this->command->ask('Confirm security password');
             if ($scode != $cscode) {
                 if ($i >= 3) {
-                    print('取消創建網頁管理員，確認安全密碼錯誤過多次。' . PHP_EOL);
+                    print('Cancel the creation of a web administrator, and confirm that the security password has been wrong for many times.' . PHP_EOL);
                     return;
                 } else {
-                    print('全密碼錯不相符，請重新輸入。' . PHP_EOL);
+                    print('The password is wrong and does not match, please re-enter.' . PHP_EOL);
                 }
             }else{
                 break;
