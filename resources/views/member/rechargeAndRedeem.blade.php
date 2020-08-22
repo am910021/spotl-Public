@@ -35,14 +35,14 @@
                                             </p>
 
                                             <div class="row">
-                                                <div class="col-md-4 offset-2">
+                                                <div class="col-md-5 offset-1">
                                                     <a href="https://ip_address_removed/s/AtPz3ng" target="_blank" type="button"
                                                        class="btn btn-block btn-info">
                                                         {{ __('Click to Recharge') }}
                                                     </a>
                                                 </div>
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <a href="https://ip_address_removed/s/AJ8aVZO" target="_blank" type="button" class="btn btn-block btn-info">
                                                         {{ __('Click to Buy') }}
                                                     </a>
@@ -75,7 +75,7 @@
                                             @elseif ( session('status') == 2)
                                                 <div class="alert alert-danger alert-dismissible fade show"
                                                      role="alert">
-                                                    <strong>{{ __('Fail!') }}</strong> {{ session('item') }}
+                                                    <strong>{{ __('Fail!') }}</strong> {{ session('msg') }}
                                                     <button type="button" class="close" data-dismiss="alert"
                                                             aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>

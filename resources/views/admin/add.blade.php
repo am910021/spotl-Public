@@ -16,12 +16,8 @@
         $(function () {
             $('#start_time').datetimepicker({
                 locale: 'zh-tw',
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
+                format: 'YYYY/MM/DD HH:mm',
+                minDate: moment(new Date),
             });
             $('#start_time').val(now);
         });
@@ -29,12 +25,7 @@
         $(function () {
             $('#end_time').datetimepicker({
                 locale: 'zh-tw',
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
+                format: 'YYYY/MM/DD HH:mm',
             });
             $('#end_time').val(now);
         });

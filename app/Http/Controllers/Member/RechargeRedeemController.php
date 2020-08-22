@@ -90,10 +90,27 @@ class RechargeRedeemController extends Controller
         $item_amount = $redeem->item_amount;
         $price = $redeem->price;
 
-        if ($item_type >= 1001 && $item_type <= 1003) {
-            $logC = RedeemLog::where('user_id', Auth::user()->id)->where(function ($query) {
-                $query->orWhereBetween('item_type', [1001, 1003]);
-            })->count();
+        if ($item_type == 1001 ) {
+            $logC = RedeemLog::where('user_id', Auth::user()->id)->where('item_type', 1001)->count();
+            if ($logC > 0) {
+                $response['status'] = 2; //1=success, 2=fail
+                $response['msg'] = 'TYPEUSED';
+                return redirect(route('member.rechargeAndRedeem') . '#redeem')->with($response)->withInput();
+            }
+        }
+
+        if ($item_type == 1002 ) {
+            $logC = RedeemLog::where('user_id', Auth::user()->id)->where('item_type', 1002)->count();
+
+            if ($logC > 0) {
+                $response['status'] = 2; //1=success, 2=fail
+                $response['msg'] = 'TYPEUSED';
+                return redirect(route('member.rechargeAndRedeem') . '#redeem')->with($response)->withInput();
+            }
+        }
+
+        if ($item_type == 1003) {
+            $logC = RedeemLog::where('user_id', Auth::user()->id)->where('item_type', 1003)->count();
             if ($logC > 0) {
                 $response['status'] = 2; //1=success, 2=fail
                 $response['msg'] = 'TYPEUSED';
@@ -315,6 +332,9 @@ class RechargeRedeemController extends Controller
                 //GetDonationSum($_SESSION['usr_name']);
                 $this->getDonationSum();
                 break;
+            default:
+                $ret['status'] = 2;
+                $ret['item'] = '兌換錯誤，請聯絡管理員。';
         }
 
     }
@@ -337,9 +357,9 @@ class RechargeRedeemController extends Controller
 
             foreach ($logs as $log) {
                 if ($log->item_type == 1001) {
-                    $SumCash += 3000;
+                    $SumCash += 8000;
                 } else if ($log->item_type == 1002) {
-                    $SumCash += 7000;
+                    $SumCash += 15000;
                 } else if ($log->item_type == 7) {
                     $SumCash += $log->item_amount;
                 }
