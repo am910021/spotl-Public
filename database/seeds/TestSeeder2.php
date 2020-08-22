@@ -19,6 +19,9 @@ class TestSeeder2 extends Seeder
         //
         $code = WebCode::find(528);
 
+        $diffTime = Carbon::parse($code->effective_start)->diffInSeconds($code->effective_end);
+        error_log($diffTime);
+
         error_log($code->effective_start==$code->effective_end);
         error_log(gettype($code->effective_start));
 

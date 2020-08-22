@@ -117,6 +117,7 @@ return [
     'url'         => ':attribute 的格式錯誤。',
     'uuid'        => ':attribute 必須是有效的 UUID。',
     'security'        => ':attribute 驗證失敗。',
+    'english_number_only'=>':attribute 僅能輸入英文+數字。',
 
 
     /*

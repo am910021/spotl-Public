@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Model\GameUsers;
 use App\Providers\RouteServiceProvider;
+use App\Rules\EnglishNumberOnly;
 use App\Rules\UserCheck;
 use App\User;
 use Carbon\Carbon;
@@ -59,11 +60,11 @@ class RegisterController extends Controller
         $database = DB::connection("game")->getDatabaseName();
 
         $rules = [
-            'username' => ['required', 'string', 'max:255', new UserCheck()],
+            'username' => ['required', 'string', 'min:4', 'max:12', new UserCheck(), new EnglishNumberOnly()],
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['required', 'string'],
             'gender' => ['required', 'digits_between:0,1'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'max:12', 'confirmed', new EnglishNumberOnly()],
         ];
 
         $msg = [
@@ -118,6 +119,12 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
+
+        $userC = User::where('reg_ip', $request->ip())->count();
+        if ($userC > 2) {
+            return redirect(route('register'))->with(['status' => '1'])->withInput();
+        }
+
 
         event(new Registered($user = $this->create($request)));
 

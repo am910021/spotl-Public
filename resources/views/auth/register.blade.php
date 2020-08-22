@@ -11,6 +11,16 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
+                            @if( session('status') == 1)
+                                <div class="alert alert-danger alert-dismissible fade show"
+                                     role="alert">
+                                    <strong>{{ __('Fail!') }}</strong> 你的所在地已達註冊上限。
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
 
                             <div class="form-group row">
                                 <label for="username"
