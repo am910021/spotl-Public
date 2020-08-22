@@ -287,16 +287,13 @@ class RechargeRedeemController extends Controller
                     $item->itm_newbiepacket = 1;
                     if ($i != 9) {
                         $item->itm_slot = $free_slot[$i];
-                        $item->itm_slot = Auth::user()->id;
+                        $item->itm_usr_id = User::convert(Auth::user())->game_id;
                         $item->itm_type = ($item_list[$i] + $element);
-
-
                     } else {
                         $item->itm_slot = $free_slot[$i];
-                        $item->itm_slot = Auth::user()->id;
+                        $item->itm_usr_id = User::convert(Auth::user())->game_id;
                         $item->itm_type = ($item_list[$i] + $element / 10);
                     }
-
                     $item->save();
                 }
                 $ret['item'] = "The Beginner Pack (30-day Super Silver Card & a set of 30-day Gold Equipment Cards of random element included)";

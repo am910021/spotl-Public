@@ -20,10 +20,7 @@
 
                                     <ul class="list-unstyled">
                                         <li class="list-item">
-                                            <u>下載地址1</u>
-                                        </li>
-                                        <li class="list-item">
-                                            <u>下載地址2</u>
+                                            <a href="https://pan.baidu.com/s/1rx5M9HUKK_r5iLRlnFWEYw" target="_blank">百度連結</a> 提取码：a0ej
                                         </li>
                                     </ul>
                                 </div>

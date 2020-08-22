@@ -17,14 +17,8 @@ class TestSeeder2 extends Seeder
     public function run()
     {
         //
-        $codeC = WebCode::orWhere(function ($query) {
-            $query->where('code', 1)
-                ->where('pass', 1);
-        });
-
-        $codeC = WebCode::where('code', 1)->orWhere('pass', 1);
-        error_log($codeC->toSql());
-        error_log(Carbon::parse('2020/08/21 18:03'));
+        $user   = User::find(8);
+        error_log(json_encode($user->redeemLogs));
 
     }
 }
