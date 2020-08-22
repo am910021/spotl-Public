@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\DB;
  * @property int item_type
  * @property int item_amount
  * @property string generate_username
- * @property Carbon generate_timestamp
- * @property Carbon effective_start
- * @property Carbon effective_end
+ * @property string generate_timestamp
+ * @property string effective_start
+ * @property string effective_end
  * @property int max_redemption
  * @property int remaining_redemption
  * @property int price
+ * @method static WebCode find(int $int)
  */
 class WebCode extends Model
 {

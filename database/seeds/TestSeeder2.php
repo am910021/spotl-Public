@@ -17,8 +17,10 @@ class TestSeeder2 extends Seeder
     public function run()
     {
         //
-        $user   = User::find(8);
-        error_log(json_encode($user->redeemLogs));
+        $code = WebCode::find(528);
+
+        error_log($code->effective_start==$code->effective_end);
+        error_log(gettype($code->effective_start));
 
     }
 }

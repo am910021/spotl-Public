@@ -73,11 +73,13 @@ class RechargeRedeemController extends Controller
             return redirect(route('member.rechargeAndRedeem') . '#redeem')->with($response)->withInput();
         }
 
-        $diffTime = Carbon::now()->diffInSeconds($redeem->effective_end);
-        if ($diffTime < 0) {
-            $response['status'] = 2; //1=success, 2=fail
-            $response['msg'] = 'EXPIRED';
-            return redirect(route('member.rechargeAndRedeem') . '#redeem')->with($response)->withInput();
+        if ($redeem->effective_start != $redeem->effective_end) {
+            $diffTime = Carbon::now()->diffInSeconds($redeem->effective_end);
+            if ($diffTime < 0) {
+                $response['status'] = 2; //1=success, 2=fail
+                $response['msg'] = 'EXPIRED';
+                return redirect(route('member.rechargeAndRedeem') . '#redeem')->with($response)->withInput();
+            }
         }
 
         if ($redeem->remaining_redemption <= 0) {
@@ -90,7 +92,7 @@ class RechargeRedeemController extends Controller
         $item_amount = $redeem->item_amount;
         $price = $redeem->price;
 
-        if ($item_type == 1001 ) {
+        if ($item_type == 1001) {
             $logC = RedeemLog::where('user_id', Auth::user()->id)->where('item_type', 1001)->count();
             if ($logC > 0) {
                 $response['status'] = 2; //1=success, 2=fail
@@ -99,7 +101,7 @@ class RechargeRedeemController extends Controller
             }
         }
 
-        if ($item_type == 1002 ) {
+        if ($item_type == 1002) {
             $logC = RedeemLog::where('user_id', Auth::user()->id)->where('item_type', 1002)->count();
 
             if ($logC > 0) {
