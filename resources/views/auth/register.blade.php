@@ -4,10 +4,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+
                 <div class="card">
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
+                        <p>注意：账号不能中文、不可复杂特殊字符，账号密码不能超过12位，每位玩家最多注册两个账号。</p>
+                        <br>
+                        <br>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
@@ -87,7 +91,7 @@
                                 <div class="input-group col-md-6">
                                     <select name="gender" class="form-control @error('gender') is-invalid @enderror"
                                             id="gender">
-                                        <option selected >女/男</option>
+                                        <option selected>女/男</option>
                                         <option value="0">女</option>
                                         <option value="1">男</option>
                                     </select>
