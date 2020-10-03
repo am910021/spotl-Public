@@ -114,4 +114,8 @@ return [
 
     'password_timeout' => 10800,
 
+    'disable'   =>[
+        'register' => (bool) env('DISABLE_REGISTER', false),
+    ],
+
 ];

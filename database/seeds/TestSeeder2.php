@@ -17,13 +17,14 @@ class TestSeeder2 extends Seeder
     public function run()
     {
         //
-        $code = WebCode::find(528);
+//        $code = WebCode::find(528);
+//
+//        $diffTime = Carbon::parse($code->effective_start)->diffInSeconds($code->effective_end);
+//        error_log($diffTime);
+//
+//        error_log($code->effective_start==$code->effective_end);
+//        error_log(gettype($code->effective_start));
 
-        $diffTime = Carbon::parse($code->effective_start)->diffInSeconds($code->effective_end);
-        error_log($diffTime);
-
-        error_log($code->effective_start==$code->effective_end);
-        error_log(gettype($code->effective_start));
-
+        error_log(Carbon::now()->timestamp);
     }
 }

@@ -30,7 +30,7 @@
                     <div class="col-md-3 text-right">
 
                         @guest
-                            <a class="h2" href="{{ route("login") }}"><u>登入/註冊</u></a>
+                                <a class="h2" href="{{ route("login") }}"><u>登入/註冊</u></a>
                         @else
                             <a class="h2" href="{{ route("logout") }}"><u>登出</u></a>
                         @endguest

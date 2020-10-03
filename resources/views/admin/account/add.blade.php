@@ -1,34 +1,41 @@
 @extends('layouts.layout')
 
 @section('content')
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <span class="h1">{{ $title }}</span>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row justify-content-center">
-            @if( Config::get('auth.disable.register') )
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">{{ __('Register') }}</div>
-                        <div class="card-body">
-                            <p>注意：注册渠道目前关闭中..请加下方QQ群联系服主人工审核开通。</p>
-                            <br>
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            @else
             <div class="col-md-8">
+
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
-                    <div class="card-body">
+                    <div
+                        class="card-header h5">{{ __('Admin:') }} {{ auth()->user()->username }}</div>
+
+                    <div class="card-body" id="card">
                         <p>注意：账号不能中文、不可复杂特殊字符，账号密码不能超过12位，每位玩家最多注册两个账号。</p>
                         <br>
                         <br>
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('admin.account.add.update') }}">
                             @csrf
 
                             @if( session('status') == 1)
+
+                                <div class="alert alert-primary alert-dismissible fade show"
+                                     role="alert">
+                                    <strong>{{ __('Add').__('Success!') }}</strong> {{ __('Account').': '.session('account') }}
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @elseif ( session('status') == 2)
                                 <div class="alert alert-danger alert-dismissible fade show"
                                      role="alert">
-                                    <strong>{{ __('Fail!') }}</strong> 你的所在地已達註冊上限。
+                                    <strong>{{ __('Add').__('Fail!') }}</strong>
                                     <button type="button" class="close" data-dismiss="alert"
                                             aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -155,23 +162,14 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-4 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Add') }}
                                     </button>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <a class="btn btn-info btn-block" href="{{ url('login') }}">
-                                        {{ __('Login') }}
-                                    </a>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            @endif
-
-
         </div>
     </div>
 @endsection

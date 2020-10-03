@@ -28,6 +28,11 @@
                                                 {{ __('Code Manage') }}
                                             </a>
                                         </div>
+                                        <div class="col-md-2 ">
+                                            <a href="{{ route('admin.account') }}" class="btn btn-block btn-info">
+                                                {{ __('Account Manager') }}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

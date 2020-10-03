@@ -38,9 +38,15 @@ Route::name('admin.')->prefix('/admin')->group(function () {
         return redirect(route('admin.code'));
     });
 
-
     Route::get('/code/add', 'Admin\CodeController@form')->name('code.add');
     Route::post('/code/add', 'Admin\CodeController@add');
+
+    Route::get('/account', 'Admin\AccountController@index')->name('account');
+    Route::get('/account/add', 'Admin\AccountController@add')->name('account.add');
+    Route::post('/account/add/update', 'Admin\AccountController@addUpdate')->name('account.add.update');
+    Route::get('/account/modify/{gnum}', 'Admin\AccountController@modifyShow')->name('account.modify');
+    Route::post('/account/update/{gnum}', 'Admin\AccountController@modify')->name('account.update');
+
 
 });
 

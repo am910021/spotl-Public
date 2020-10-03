@@ -13,6 +13,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -57,8 +58,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $database = DB::connection("game")->getDatabaseName();
-
         $rules = [
             'username' => ['required', 'string', 'min:4', 'max:12', new UserCheck(), new EnglishNumberOnly()],
             'email' => ['required', 'string', 'email', 'max:255'],
@@ -70,7 +69,6 @@ class RegisterController extends Controller
         $msg = [
             'gender.digits_between' => __('Please choose male or female')
         ];
-
 
         return Validator::make($data, $rules, $msg);
     }
@@ -118,6 +116,10 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
+        if(Config::get('auth.disable.register')){
+            return redirect(route('index'));
+        }
+
         $this->validator($request->all())->validate();
 
         $userC = User::where('reg_ip', $request->ip())->count();
@@ -148,6 +150,7 @@ class RegisterController extends Controller
     {
         $response = array();
         $response['title'] = __('Register');
+        $response['gender_type'] = array(-1 => '女/男', 0 => '女', 1 => '男');
         return view('auth.register')->with($response);
     }
 }

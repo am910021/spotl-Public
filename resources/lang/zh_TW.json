@@ -82,5 +82,18 @@
     "Query": "查尋",
     "Click to Recharge": "點我充值Cash",
     "Click to Buy": "點我購買新手禮包",
-    "Note": "注意"
+    "Note": "注意",
+    "Account Manager": "帳號管理",
+    "Modify Account": "修改帳號",
+    "Game Username": "遊戲帳號",
+    "Web Username": "網站帳號",
+    "Ban to": "鎖定到",
+    "Ban Type": "鎖定類型",
+    "Modify": "修改",
+    "Modify Success!": "修改成功!",
+    "Modify Fail!": "修改失敗!",
+    "Add Account": "新增帳號",
+    "Add": "新增",
+    "Success!": "成功!",
+    "Account": "帳號"
 }

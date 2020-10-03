@@ -118,7 +118,8 @@ return [
     'uuid'        => ':attribute 必須是有效的 UUID。',
     'security'        => ':attribute 驗證失敗。',
     'english_number_only'=>':attribute 僅能輸入英文+數字。',
-
+    'exist_in_game'      => ':attribute 已經存在於遊戲帳號。',
+    'exist_in_web'      => ':attribute 已經存在於網站帳號。',
 
     /*
     |--------------------------------------------------------------------------
@@ -187,5 +188,10 @@ return [
         'max_redemption'        =>'可兌換次數',
         'amount'                =>'序號產生數量',
         'price'                 =>'價錢(RMB)',
+        'game_username'         => '遊戲帳號',
+        'web_username'          => '網站帳號',
+        'ban_to'                => '鎖定到',
+        'ban_type'              => '鎖定類型',
+
     ],
 ];
